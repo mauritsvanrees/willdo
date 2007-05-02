@@ -6,6 +6,8 @@ from willdo.interfaces import IDoItTomorrow, IWillDoList
 import datetime
 
 
+grok.define_permission('willdo.ManageList')
+
 class DoItTomorrow(grok.Application, grok.Container):
     implements(IDoItTomorrow)
 
@@ -26,6 +28,7 @@ class WillDo(grok.Model):
 class DoItTomorrowIndex(grok.View):
     grok.context(DoItTomorrow)
     grok.name('index')
+    grok.require('willdo.ManageList')
 
     def update(self, day=u'', month=u'', year=u'',
                today=None, tomorrow=None):
@@ -87,6 +90,7 @@ class DoItTomorrowIndex(grok.View):
 class WillDoIndex(grok.View):
     grok.context(WillDo)
     grok.name('index')
+    grok.require('willdo.ManageList')
 
     def update(self, open=None, close=None, newtask=None):
         if open:
@@ -102,5 +106,7 @@ class WillDoIndex(grok.View):
                 self.context.tasks.append(newtask)
 
 
+
 class Edit(grok.EditForm):
     grok.context(WillDo)
+    grok.require('willdo.ManageList')
