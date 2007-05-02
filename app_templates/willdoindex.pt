@@ -1,0 +1,58 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h1 tal:content="view/context/day" />
+
+    <p>Go <a href="..">up</a>.</p>
+
+    <form
+        name="#"
+        action=""
+        method="post">
+      
+      <tal:tasks
+          tal:define="tasks view/context/tasks"
+          tal:condition="tasks">
+
+        <h2>I will do these tasks</h2>
+        <ul>
+          <li tal:repeat="task tasks"
+              tal:content="task"/>
+        </ul>
+
+      </tal:tasks>
+
+      <tal:open
+          tal:condition="not:view/context/closed">
+        <p>This is an open list: I am allowed to add a task.</p>
+        <h3>Add task:</h3>
+        <input class="textType"
+               id="newtask"
+               name="newtask"
+               size="20"
+               type="text"
+               value=""  />
+        <input type="submit"
+               name="add"
+               value="Add this task" />
+        <input type="submit"
+               name="close"
+               value="Close list" />
+      </tal:open>
+
+      <tal:closed
+          tal:condition="view/context/closed">
+        <hr />
+        <p>This is a closed list: nothing can be added.</p>
+        <input type="submit"
+               name="open"
+               value="Open list" />
+      </tal:closed>
+
+      <input type="hidden" name="form.submitted" value="1" />
+
+    </form>
+
+  </body>
+</html>

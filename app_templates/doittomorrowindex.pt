@@ -1,0 +1,41 @@
+<html>
+<head>
+</head>
+<body>
+  <h2>Existing entries</h2>
+  <ul>
+    <li tal:repeat="key view/entries">
+      <a tal:attributes="href key/link"
+         tal:content="key/day"></a>
+    </li>
+  </ul>
+
+  <tal:today tal:define="today view/todayslist"
+             tal:condition="today">
+    <h2>Today's list</h2>
+      <tal:tasks
+          tal:define="tasks today/tasks"
+          tal:condition="tasks">
+
+        <h2>I will do these tasks</h2>
+        <ul>
+          <li tal:repeat="task tasks"
+              tal:content="task"/>
+        </ul>
+
+      </tal:tasks>
+  </tal:today>
+
+  <h2>Add a new will do list</h2>
+  <form tal:attributes="action python:view.url()" method="POST">
+    Day:   <input type="text" name="day" size="2" maxlength="2" value="" />
+    Month: <input type="text" name="month" size="2" maxlength="2" value="" />
+    Year:   <input type="text" name="year" size="4" maxlength="4" value="" />
+    <input type="submit" value="Add list" /><br />
+    Shortcuts:
+    <input type="submit" name="today" value="Today" />
+    <input type="submit" name="tomorrow" value="Tomorrow" />
+  </form>
+
+</body>
+</html>
