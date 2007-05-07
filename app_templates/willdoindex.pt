@@ -7,7 +7,7 @@
     <p>Go <a href="..">up</a>.</p>
 
     <form
-        name="#"
+        name="thisday"
         action=""
         method="post">
       
@@ -17,8 +17,18 @@
 
         <h2>I will do these tasks</h2>
         <ul>
-          <li tal:repeat="task tasks"
-              tal:content="task"/>
+          <li tal:repeat="task tasks">
+            <tal:task content="task/name"/>,
+            <span tal:content="task/time" /> minutes
+            <input type="submit"
+                   tal:attributes="name string:start-${repeat/task/index}"
+                   value="Start timer"
+                   tal:condition="not:task/start" />
+            <input type="submit"
+                   tal:attributes="name string:start-nothing"
+                   value="Stop timer"
+                   tal:condition="task/start" />
+          </li>
         </ul>
 
       </tal:tasks>

@@ -2,6 +2,7 @@ import grok
 from zope.interface import implements
 from zope.schema.fieldproperty import FieldProperty
 from persistent.list import PersistentList
+from persistent.dict import PersistentDict
 from willdo.interfaces import IDoItTomorrow, IWillDoList
 import datetime
 
@@ -103,8 +104,28 @@ class WillDoIndex(grok.View):
                 # visible then
                 pass
             else:
-                self.context.tasks.append(newtask)
-
+                new = dict(
+                    name = newtask,
+                    #time = datetime.timedelta(0),
+                    time = 0, # minutes
+                    start = None,
+                    )
+                newdict = PersistentDict(new)
+                self.context.tasks.append(newdict)
+        now = datetime.datetime.utcnow()
+        for key in self.request.form.keys():
+            if key.startswith(u'start-'):
+                started = [task for task in self.context.tasks if task['start'] is not None]
+                for task in started:
+                    diff = now - task['start']
+                    task['time'] += (now - task['start']).seconds / 60
+                    task['start'] = None
+                try:
+                    id = int(key[5:])
+                except:
+                    return
+                task = self.context.tasks[id]
+                task['start'] = now
 
 
 class Edit(grok.EditForm):

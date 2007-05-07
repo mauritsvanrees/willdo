@@ -27,7 +27,8 @@
   </tal:today>
 
   <h2>Add a new will do list</h2>
-  <form tal:attributes="action python:view.url()" method="POST">
+  <form name="main"
+      tal:attributes="action python:view.url()" method="POST">
     Day:   <input type="text" name="day" size="2" maxlength="2" value="" />
     Month: <input type="text" name="month" size="2" maxlength="2" value="" />
     Year:   <input type="text" name="year" size="4" maxlength="4" value="" />
