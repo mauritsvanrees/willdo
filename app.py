@@ -118,7 +118,7 @@ class WillDoIndex(grok.View):
                 started = [task for task in self.context.tasks if task['start'] is not None]
                 for task in started:
                     diff = now - task['start']
-                    task['time'] += round((now - task['start']).seconds / 60.0)
+                    task['time'] += int(round((now - task['start']).seconds / 60.0))
                     task['start'] = None
                 try:
                     id = int(key[6:])
