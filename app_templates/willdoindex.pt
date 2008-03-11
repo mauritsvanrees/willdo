@@ -22,10 +22,12 @@
             <span tal:content="task/time" /> minutes
             <input type="submit"
                    tal:attributes="name string:start-${repeat/task/index}"
+                   style="color:green"
                    value="Start timer"
                    tal:condition="not:task/start" />
             <input type="submit"
                    tal:attributes="name string:start-nothing"
+                   style="color:red"
                    value="Stop timer"
                    tal:condition="task/start" />
           </li>
