@@ -7,7 +7,10 @@ from willdo.interfaces import IDoItTomorrow, IWillDoList
 import datetime
 
 
-grok.define_permission('willdo.ManageList')
+class ManageList(grok.Permission):
+    grok.name('willdo.ManageList')
+    grok.title('Manage willdo list')
+
 
 class DoItTomorrow(grok.Application, grok.Container):
     implements(IDoItTomorrow)
