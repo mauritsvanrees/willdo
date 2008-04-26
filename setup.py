@@ -4,16 +4,16 @@ version = '0.2'
 
 setup(name='willdo',
       version=version,
-      description="",
-      long_description="""\
+      description="Will Do List",
+      long_description="""Will Do List for Grok, see www.markforster.net\
 """,
       # Get strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=[], 
-      keywords="",
-      author="",
-      author_email="",
-      url="",
-      license="",
+      keywords="willdo todo",
+      author="Maurits van Rees",
+      author_email="maurits@vanrees.org",
+      url="http://maurits.vanrees.org",
+      license="GPL",
       package_dir={'': 'src'},
       packages=find_packages('src'),
       include_package_data=True,
