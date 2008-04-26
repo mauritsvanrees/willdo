@@ -18,8 +18,9 @@
         <h2>I will do these tasks</h2>
         <ul>
           <li tal:repeat="task tasks">
-            <tal:task content="task/name"/>,
-            <span tal:content="task/time" /> minutes
+            <tal:task content="task/name"/>:
+            <span tal:content="python:task['time'] / 60" /> hours
+            <span tal:content="python:task['time'] % 60" /> minutes
             <input type="submit"
                    tal:attributes="name string:start-${repeat/task/index}"
                    style="background-color:#ccffaa"
