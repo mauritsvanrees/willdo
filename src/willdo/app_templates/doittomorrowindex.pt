@@ -17,6 +17,8 @@
         </ul>
 
       </tal:tasks>
+      <a href=""
+         tal:attributes="href today/link">Go!</a>
   </tal:today>
 
   <h2>Add a new will do list</h2>
