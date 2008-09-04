@@ -1,6 +1,7 @@
 import grok
 from zope.interface import implements
 from zope.schema.fieldproperty import FieldProperty
+from zope.cachedescriptors.property import Lazy
 from persistent.list import PersistentList
 from persistent.dict import PersistentDict
 from willdo.interfaces import IDoItTomorrow, IWillDoList
@@ -130,6 +131,12 @@ class WillDoIndex(grok.View):
                 task = self.context.tasks[id]
                 task['start'] = now
 
+    @Lazy
+    def total_time(self):
+        minutes = sum([task['time'] for task in self.context.tasks])
+        hours = minutes / 60
+        minutes = minutes % 60
+        return dict(hours=hours, minutes=minutes)
 
 class Edit(grok.EditForm):
     grok.context(WillDo)

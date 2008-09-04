@@ -6,6 +6,12 @@
 
     <p>Go <a href="..">up</a>.</p>
 
+    <h3>
+      Total for today:
+      <span tal:content="view/total_time/hours" /> hours
+      <span tal:content="view/total_time/minutes" /> minutes
+    </h3>
+
     <form
         name="thisday"
         action=""
