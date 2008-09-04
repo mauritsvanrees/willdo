@@ -13,7 +13,7 @@
         <h2>I will do these tasks</h2>
         <ul>
           <li tal:repeat="task tasks"
-              tal:content="task"/>
+              tal:content="task/name" />
         </ul>
 
       </tal:tasks>
