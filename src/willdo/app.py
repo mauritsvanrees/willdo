@@ -61,9 +61,10 @@ class DoItTomorrowIndex(grok.View):
             target = datetime.date(year, month, day)
 
         id = unicode(target.toordinal())
-        if self.context.has_key(id):
-            return
-        self.context[id] = WillDo(day=target)
+        if not self.context.has_key(id):
+            self.context[id] = WillDo(day=target)
+        item = self.context[id]
+        self.redirect(self.url(item))
 
     def entries(self):
         context = self.context
