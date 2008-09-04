@@ -74,6 +74,7 @@ class DoItTomorrowIndex(grok.View):
                 day = context[key].day,
                 )
             contents.append(info)
+        contents.reverse()
         return contents
 
     def todayslist(self):

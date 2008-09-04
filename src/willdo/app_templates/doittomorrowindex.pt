@@ -2,13 +2,6 @@
 <head>
 </head>
 <body>
-  <h2>Existing entries</h2>
-  <ul>
-    <li tal:repeat="key view/entries">
-      <a tal:attributes="href key/link"
-         tal:content="key/day"></a>
-    </li>
-  </ul>
 
   <tal:today tal:define="today view/todayslist"
              tal:condition="today">
@@ -37,6 +30,15 @@
     <input type="submit" name="today" value="Today" />
     <input type="submit" name="tomorrow" value="Tomorrow" />
   </form>
+
+  <h2>Existing entries</h2>
+  <h6>(Newest first)</h6>
+  <ul>
+    <li tal:repeat="key view/entries">
+      <a tal:attributes="href key/link"
+         tal:content="key/day"></a>
+    </li>
+  </ul>
 
 </body>
 </html>
